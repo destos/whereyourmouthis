@@ -8,13 +8,11 @@ define(["app", "backbone", "modules/facility"], function(app, Backbone, Facility
       "location/:id": "single"
     },
     initialize: function() {
-      var Temp,
-        _this = this;
+      var _this = this;
       app.regionCollection = new Facility.Collection;
-      Temp = Facility.LocalCollection.extend({
+      app.localFacilities = new Facility.LocalCollection.extend({
         parent: app.regionCollection
       });
-      app.localFacilities = new Temp();
       app.on('regionFileUpdate', function(err, file) {
         return app.regionCollection.fetch({
           url: file,

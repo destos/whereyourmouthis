@@ -14,9 +14,8 @@ define [
     initialize: () ->
       
       app.regionCollection = new Facility.Collection
-      Temp = Facility.LocalCollection.extend
+      app.localFacilities = new Facility.LocalCollection.extend
         parent: app.regionCollection
-      app.localFacilities = new Temp()
       
       app.on 'regionFileUpdate', (err, file) =>
         app.regionCollection.fetch
